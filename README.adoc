@@ -1,7 +1,5 @@
 = Examplar assignments
 
-1HMbIGkh64KzhrvcCbshJbb-Et_kIXX2a
-
 - https://pyret-horizon.herokuapp.com/project-from-template?folderId=1HMbIGkh64KzhrvcCbshJbb-Et_kIXX2a[fact]
 
 - https://pyret-horizon.herokuapp.com/project-from-template?folderId=12I0Gm0C2WY2Abm4lrCs_Bj8oI4Lnicxa[docdiff]
