@@ -3,3 +3,9 @@
 - https://pyret-horizon.herokuapp.com/project-from-template?folderId=1HMbIGkh64KzhrvcCbshJbb-Et_kIXX2a[fact]
 
 - https://pyret-horizon.herokuapp.com/project-from-template?folderId=12I0Gm0C2WY2Abm4lrCs_Bj8oI4Lnicxa[docdiff]
+
+- https://pyret-horizon.herokuapp.com/project-from-template?folderId=1QeZ0g9SWR0_rQLVNv2LlKrZcnIRU7LTB[sortacle]
+
+- https://pyret-horizon.herokuapp.com/project-from-template?folderId=1qiE2pu15m_pObkJ7wolFwjlAaAZTHTcG[contfracs]
+
+- https://pyret-horizon.herokuapp.com/project-from-template?folderId=1HZg9iepvDH6GvqZXldYzrW04UmTSvd42[filesystem]
