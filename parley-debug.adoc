@@ -9,11 +9,15 @@ Three ways of debugging wheats/chaffs/tests.
 3. Commit/push to pyret-lang#anchor, commit empty and push to
 code.pyret.org#horizon and pyret-horizon.herokuapp.com
 
-#1 is best. Ensure no explicit include/import of cpo or lists.
+#1 is best. Ensure no explicit include/import of cpo or lists
+(because these are not visible/available here, altho cd probly
+fudge using path settings). (Using small script to clean up this
+aspect.)
 
 #2 include cpo. Sometimes import lists as L is used. Type errors,
 some of which can be corrected by explicitly typing anonymous
 function occurrences.
+
 _ (used in nile) is thrown as error. Expressions that work in
 pyret-npm even after all this behave differently, thus making
 wheats that were reliable now fail.  (I had to modify the
