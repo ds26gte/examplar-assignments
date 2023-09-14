@@ -1,11 +1,31 @@
-= Examplar assignments
+= Examplar/Parley
 
-- https://pyret-horizon.herokuapp.com/project-from-template?folderId=1HMbIGkh64KzhrvcCbshJbb-Et_kIXX2a[fact]
+== fact
 
-- https://pyret-horizon.herokuapp.com/project-from-template?folderId=12I0Gm0C2WY2Abm4lrCs_Bj8oI4Lnicxa[docdiff]
+https://pyret-horizon.herokuapp.com/parley/?folder=1kge_mRnUZ5cYhH1ojJxu7TKE3pbZUPBj
+https://drive.google.com/drive/folders/1kge_mRnUZ5cYhH1ojJxu7TKE3pbZUPBj
+https://pyret-horizon.herokuapp.com/project-from-template?folderId=1kge_mRnUZ5cYhH1ojJxu7TKE3pbZUPBj
 
-- https://pyret-horizon.herokuapp.com/project-from-template?folderId=1QeZ0g9SWR0_rQLVNv2LlKrZcnIRU7LTB[sortacle]
+== docdiff
 
-- https://pyret-horizon.herokuapp.com/project-from-template?folderId=1qiE2pu15m_pObkJ7wolFwjlAaAZTHTcG[contfracs]
+https://pyret-horizon.herokuapp.com/parley/?folder=1yo2nAYKyxd3F5wLuks7ohkzghZQ08YCp
+https://drive.google.com/drive/folders/1yo2nAYKyxd3F5wLuks7ohkzghZQ08YCp
+https://pyret-horizon.herokuapp.com/project-from-template?folderId=1yo2nAYKyxd3F5wLuks7ohkzghZQ08YCp
 
-- https://pyret-horizon.herokuapp.com/project-from-template?folderId=1HZg9iepvDH6GvqZXldYzrW04UmTSvd42[filesystem]
+== sortacle
+
+https://pyret-horizon.herokuapp.com/parley/?folder=1Qa66k1amXRuDVix88vV-QQXdCIGh8f54
+https://drive.google.com/drive/folders/1Qa66k1amXRuDVix88vV-QQXdCIGh8f54
+https://pyret-horizon.herokuapp.com/project-from-template?folderId=1Qa66k1amXRuDVix88vV-QQXdCIGh8f54
+
+== contfracs
+
+https://pyret-horizon.herokuapp.com/parley/?folder=16azDovpefLZwTph4YXz35ZZ0QG_r5zDi
+https://drive.google.com/drive/folders/16azDovpefLZwTph4YXz35ZZ0QG_r5zDi
+https://pyret-horizon.herokuapp.com/project-from-template?folderId=16azDovpefLZwTph4YXz35ZZ0QG_r5zDi
+ 
+== nile
+
+https://pyret-horizon.herokuapp.com/parley/?folder=1M9Imf397EZ49n2Mnaa-0BLQe2PT-E4Mm
+https://drive.google.com/drive/folders/1M9Imf397EZ49n2Mnaa-0BLQe2PT-E4Mm
+https://pyret-horizon.herokuapp.com/project-from-template?folderId=1M9Imf397EZ49n2Mnaa-0BLQe2PT-E4Mm
