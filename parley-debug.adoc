@@ -89,7 +89,9 @@ pyret-lang#anchor.
 sortacle
 
 push through localhost
+
 include cpo
+
 # import lists as L
 
 Using lists.* in place of L.*
