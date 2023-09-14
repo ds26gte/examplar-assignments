@@ -1,0 +1,19 @@
+= Creating assignments in Parley
+
+Visit
+
+  https://pyret-horizon.herokuapp.com/new-project?projectName=<myProjName>
+
+This takes you to
+
+  pyret-horizon.kerokuapp.com/parley/?folder=<folderID>
+
+You can edit files in this folder at
+
+  https://drive.google.com/drive/folders/<folderID>
+
+Make folderID universally accessible
+
+You can work with this assignment at
+
+  https://pyret-horizon.herokuapp.com/project-from-template?folderId=<folderID>
