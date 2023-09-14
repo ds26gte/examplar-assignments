@@ -7,7 +7,7 @@ Three ways of debugging wheats/chaffs/tests.
 2. Make pyret-lang#anchor and use localhost:3000
 
 3. Commit/push to pyret-lang#anchor, commit empty and push to
-code.pyret.org#horizon and pyret-horizon.herokuapp.com
+code.pyret.org#horizon and use pyret-horizon.herokuapp.com
 
 #1 is best. Ensure no explicit include/import of cpo or lists
 (because these are not visible/available here, altho cd probly
@@ -18,20 +18,25 @@ aspect.)
 some of which can be corrected by explicitly typing anonymous
 function occurrences.
 
-_ (used in nile) is thrown as error. Expressions that work in
-pyret-npm even after all this behave differently, thus making
-wheats that were reliable now fail.  (I had to modify the
-cpo.arr, options.arr to provide data * in addition to what they
-do. I was leery of making them too much because this can create
-global -- and even lexical! -- name clashes if done indiscriminately.)
+Also implementation of certain things (%within) behave differently than in
+pyret-npm. This makes wheats that used to succeed now to fail.
+
+_ (used in nile) is thrown as error. 
+
+(I had to modify the cpo.arr, options.arr to provide data * in
+addition to what they do. I was leery of going beyond this 
+because this can create global -- and even lexical! -- name
+clashes if done indiscriminately.)
 
 Error messages show just the error templates without the instance or
 context. I.e., What but not where.
 
-#3's include cpo is NOT as powerful. Basic things like type List fail.
-We really need to make whatever cpo (and lists) modules being
-loaded in the web version be as powerful or at least equivalent
-to what I get on pyret-lang localhost.
+#3's include cpo is NOT as powerful but it is not clear what
+additional imports to use that work without outright error. Basic
+things like type List fail. We really need to make whatever cpo
+(and lists) modules being loaded in the web version be as
+powerful or at least equivalent to what I get on pyret-lang
+localhost.
 
 I obviously don't want to mess with code.pyret.org#horizon as it's being
 relied upon. It is not clear what else relies on its integrity or
@@ -56,17 +61,15 @@ missing type annotations and possibly timeout issues.
 Syntactic/Semantic differences over and beyond which modules are
 used:
 
-Parlay is very finicky about type annotations (perhaps by intent?). Anonymous
-function parameters should be annotated. Not always easy to get
-by with using Any. E.g.,
+Parlay is very finicky about type annotations (perhaps by
+intent?). Anonymous function parameters should be annotated. Not
+always easy to get by with using Any. E.g.,
 
 Type checking failed because of a type inconsistency. The type
 constraint Boolean was incompatible with the type constraint Any
 
 mapDispatchToProps() in Connect(FailureComponentUnconnected) must
 return a plain object. Instead received undefined.
-
-*
 
 Warning: Each child in a list should have a unique "key" prop.
 
