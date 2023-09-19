@@ -1,6 +1,6 @@
-// last modified 2023-09-14
+// last modified 2023-09-19
 
-// Load this in JS console to clear out existing assignment in projects 
+// paste the following in the JS console to clear out the existing assignment in projects/
 
 fs = require('fs');
 xx = fs.readdirSync('projects/chaffs');

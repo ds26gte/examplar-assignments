@@ -95,7 +95,7 @@ push through localhost
 
 include cpo
 
-# import lists as L
+ # import lists as L
 
 Using lists.* in place of L.*
 
@@ -121,3 +121,25 @@ Also, seems to be stressing any timeout limitations:
 
 AssertionError: execution completed in restore mode  (which is in
 generated file build/worker/main.js)
+
+
+== Errors while running the `filesystem` assignment
+
+The following errors show up on the JS console while running a
+best-effort modified `filesystem` assignment (i.e., correct all
+the include pathnames, and ensure `include cpo` is added when a
+file does anything beyond basics).
+
+While loading (i.e., before attempting "Update responses"), we
+get
+
+image::./filesystem-while-loading.png[]
+
+
+On "update responses", we get
+
+image::./filesystem-stack-blow-1.png[]
+image::./filesystem-stack-blow-2.png[]
+image::./filesystem-stack-blow-3.png[]
+
+
