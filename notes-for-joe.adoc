@@ -1,0 +1,18 @@
+= Notes
+
+== Debug notes
+
+link:./parley-debug.adoc[] contains notes on error messages
+seen.
+
+== Location of modified assignment folders
+
+The `local/` directory contains the modified versions of the
+legacy assignments. Essentially, I took the legacy assignment
+folder, kept the chaffs/ and wheats/ subfolders, created a
+test.arr, modified all the gdrive pathnames to relative pathnames
+(since the requested files are all here), and made sure that the
+*.arr files all have `include cpo` if needed.
+
+I've put the `filesystem` assignment there for now. Will add the
+others after I re-run them.
