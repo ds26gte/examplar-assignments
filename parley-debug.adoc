@@ -21,10 +21,10 @@ function occurrences.
 Also implementation of certain things (%within) behave differently than in
 pyret-npm. This makes wheats that used to succeed now to fail.
 
-_ (used in nile) is thrown as error. 
+_ (used in nile) is thrown as error.
 
 (I had to modify the cpo.arr, options.arr to provide data * in
-addition to what they do. I was leery of going beyond this 
+addition to what they do. I was leery of going beyond this
 because this can create global -- and even lexical! -- name
 clashes if done indiscriminately.)
 
@@ -122,6 +122,19 @@ Also, seems to be stressing any timeout limitations:
 AssertionError: execution completed in restore mode  (which is in
 generated file build/worker/main.js)
 
+== Running the `fact` assignment
+
+This is a very simple assignment (not part of the Brown group).
+It does not use lists and doesn't require `include cpo`.
+
+While loading, there is this JS console warning (and this is common to all
+assignments) but it doesn't seem to affect correctness.
+
+image::./images/fact-while-loading.png[]
+
+Updating responses provides the correct output:
+
+image::./images/fact-results.png[]
 
 == Errors while running the `filesystem` assignment
 
@@ -133,13 +146,15 @@ file does anything beyond basics).
 While loading (i.e., before attempting "Update responses"), we
 get
 
-image::./filesystem-while-loading.png[]
+image::./images/filesystem-while-loading.png[]
 
+(This above is not unique to `filesystem`. It happens before any
+engagement with the particular assignment in `projects/`. See
+above in notes for the `fact` assignment.)
 
 On "update responses", we get
 
-image::./filesystem-stack-blow-1.png[]
-image::./filesystem-stack-blow-2.png[]
-image::./filesystem-stack-blow-3.png[]
-
+image::./images/filesystem-stack-blow-1.png[]
+image::./images/filesystem-stack-blow-2.png[]
+image::./images/filesystem-stack-blow-3.png[]
 
