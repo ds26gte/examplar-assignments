@@ -130,15 +130,17 @@ It does not use lists and doesn't require `include cpo`.
 While loading, there is this JS console warning (and this is common to all
 assignments) but it doesn't seem to affect correctness.
 
-image::./images/fact-while-loading.png[]
+image::images/fact-while-loading.png[]
 
 Updating responses provides the correct output:
 
-image::./images/fact-results.png[]
+image::images/fact-results.png[]
 
-== Running the `docdiff` assignment -- misleading results.
+== Running the `docdiff` assignment -- misleading results
 
 The `docdiff` shows wheats failing (which they never should).
+
+image::images/docdiff-results.png[]
 
 This is not because of any erroring (ill-formed-ness) of the
 files themselves, but the checks fail when they shouldn't. It
@@ -148,7 +150,22 @@ looks like tests like
 
 are failing because the LHS is true rather than 1/2.
 
-image::./images/docdiff-exception.png[]
+image::images/docdiff-exception.png[]
+
+== Running the `sortacle` assignment -- misleading results
+
+`sortacle` shows wheats failing!
+
+image::images/sortacle-results.png[]
+
+Tests throwing exceptions when they shouldn't:
+
+image::images/sortacle-exception.png[]
+
+Other errors in the JS console:
+
+image::images/sortacle-uniq-key.png[]
+image::images/sortacle-map-dispatch.png[]
 
 == Errors while running the `filesystem` assignment
 
@@ -160,7 +177,7 @@ file does anything beyond basics).
 While loading (i.e., before attempting "Update responses"), we
 get
 
-image::./images/filesystem-while-loading.png[]
+image::images/filesystem-while-loading.png[]
 
 (This above is not unique to `filesystem`. It happens before any
 engagement with the particular assignment in `projects/`. See
@@ -168,7 +185,7 @@ above in notes for the `fact` assignment.)
 
 On "update responses", we get
 
-image::./images/filesystem-stack-blow-1.png[]
-image::./images/filesystem-stack-blow-2.png[]
-image::./images/filesystem-stack-blow-3.png[]
+image::images/filesystem-stack-blow-1.png[]
+image::images/filesystem-stack-blow-2.png[]
+image::images/filesystem-stack-blow-3.png[]
 
