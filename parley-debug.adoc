@@ -136,6 +136,20 @@ Updating responses provides the correct output:
 
 image::./images/fact-results.png[]
 
+== Running the `docdiff` assignment -- misleading results.
+
+The `docdiff` shows wheats failing (which they never should).
+
+This is not because of any erroring (ill-formed-ness) of the
+files themselves, but the checks fail when they shouldn't. It
+looks like tests like
+
+  overlap(cats, dogs) is%(within(0.000000000001)) 1/2
+
+are failing because the LHS is true rather than 1/2.
+
+image::./images/docdiff-exception.png[]
+
 == Errors while running the `filesystem` assignment
 
 The following errors show up on the JS console while running a
