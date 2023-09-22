@@ -189,3 +189,22 @@ image::images/filesystem-stack-blow-1.png[]
 image::images/filesystem-stack-blow-2.png[]
 image::images/filesystem-stack-blow-3.png[]
 
+== Errors while running `updater`
+
+Same `Each child in a list should have unique "key" prop` error warning as for
+sortacle.
+
+Same `mapDispatchToProps() in
+Connect(FailureComponentUnconnected) must return a plain object.
+Instead received undefined.` diagnostic as for sortacle.
+
+Had to include `random` in `cpo.arr`.
+
+On 'update responses', error got:
+
+image::images/updater-error.png[]
+
+However, trying to include `run-task` in `cpo.arr` (as a provide
+from `G`) produces a compile error!
+
+image::images/updater-fail-compile.png[]
