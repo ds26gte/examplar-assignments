@@ -102,8 +102,9 @@ We may also experiment with using something like `essentials2021`
 rather than `cpo` as our catchall module.
 
 
+== Running individual assignments
 
-== Running the `fact` assignment
+=== Running the `fact` assignment
 
 This is a very simple assignment (not part of the Brown group).
 It does not use lists and doesn't require `include cpo`.
@@ -117,7 +118,7 @@ Updating responses provides the correct output:
 
 image::images/fact-results.png[]
 
-== Running the `docdiff` assignment -- misleading results
+=== Running the `docdiff` assignment -- misleading results
 
 The `docdiff` shows wheats failing (which they never should).
 
@@ -133,7 +134,7 @@ are failing because the LHS is true rather than 1/2.
 
 image::images/docdiff-exception.png[]
 
-== Running the `sortacle` assignment -- misleading results
+=== Running the `sortacle` assignment -- misleading results
 
 `sortacle` shows wheats failing!
 
@@ -148,7 +149,7 @@ Other errors in the JS console:
 image::images/sortacle-uniq-key.png[]
 image::images/sortacle-map-dispatch.png[]
 
-== Errors while running the `filesystem` assignment
+=== Errors while running the `filesystem` assignment
 
 The following errors show up on the JS console while running a
 best-effort modified `filesystem` assignment (i.e., correct all
@@ -170,7 +171,7 @@ image::images/filesystem-stack-blow-1.png[]
 image::images/filesystem-stack-blow-2.png[]
 image::images/filesystem-stack-blow-3.png[]
 
-== Errors while running `updater`
+=== Errors while running `updater`
 
 Same `Each child in a list should have unique "key" prop` error warning as for
 sortacle.
@@ -190,9 +191,12 @@ from `G`) produces a compile error!
 
 image::images/updater-fail-compile.png[]
 
-== Erros while running `nile`
+=== Errors while running `nile`
 
 The use of `_` creates error.
+
+image::images/nile-underscore.png[]
+
 
 ////
 
