@@ -1,4 +1,200 @@
-*
+= Debugging Examplar assignments in Parley
+
+Existing Examplar assignments have to be modified so they can run
+in Parley:
+
+1. Rename all `Wheats` and `Chaffs` folders to `wheats` and
+`chaffs` respectively.
+
+2. Copy any existing `*-suite.arr` to `test.arr`.
+
+3. Ensure that the inclusion of an implementation of the
+assignment in `test.arr` occurs as its first `include file(...)`.
+(It may be preceded by things like `include cpo`.)
+
+4. Replace all occurrences `shared-gdrive(...)` or
+`my-gdrive(...)` in `include` or `import` calls with appropriate relative
+pathnames inside `file(...)`.
+
+5. If a file uses lists or other basic data structures, ensure it
+has `include cpo` at the top.
+
+6. Ensure that every function parameter (including for anonymous
+functions) has a type annotation. Parley's Examplar requires
+types for everything, but you can usually put with `Any`. (Type
+checking still fails sometimes with messages like "type
+constraint Boolean was incompatible with the type constaint
+Any".)
+
+
+== Quick local debugging 
+
+To make a preliminary check that a modified assignment has the
+right mods, you may use the command-line pyret offered by
+`pyret-npm` (v0.0.22).
+
+In order to do so, any Pyret file (whether loaded directly or via
+a subfile) should be rid of any
+`import` or `include` of the modules `cpo` and `lists` (as these
+are preloaded and should not be double loaded).
+
+Have the modified `test.arr` explicitly include the modified
+wheat or chaff file of your choice.
+
+Then call `pyret` on the modified `test.arr`.
+
+I have a shell script file called `testwhaff` whose
+argument is the (unmodified) wheat/chaff file. (This is in `bin/`
+folder along with its helper Racket files. Copy them all to your
+`PATH` if you want to use them.)
+
+== Testing using `localhost:3000`
+
+To check that the assignments actually work in Parley's Examplar,
+build in the `anchor` branch of `pyret-lang` and start the server
+in your browser at `localhost:3000`.
+
+To upload one of your modified assignments to the browser's
+`project` folder, ensure that there are no existing `test.arr` or
+`wheats` and `chaffs`. I have a small JavaScript fragment called
+`clear-parley-project.js` that you can paste into your JavaScript
+browser console to do this cleanup.
+
+Then uploaded your (modified) assignments's `test.arr`, `wheats` and
+`chaffs` into the `projects` browswer folder. Ensure that any
+co-folder files loaded by `test.arr` are also uploaded.  
+
+TIP: This can be a tedious process, as every file has to be
+individually uploaded. After uploading to a browser folder, i.e.,
+either `wheats` or
+`chaffs`, do a browser refresh so you go back to the `projects`
+root so subsequent uploads don't go to an unwanted folder.
+
+You may now click `Update responses` to run Examplar on the
+assignment.
+
+NOTE: I had to ensure that `cpo.arr` and `options.arr` `provide`
+`data *`. I was leery of making further module changes in
+`pyret-lang#anchor` as this can create global -- and even
+lexical! -- name clashes if done indiscriminately.
+
+CAUTION: Error messages are very bald. They just show the error
+templates without the instance or context. I.e., they show _what_
+but not _where_.
+
+== Testing on heroku
+
+This is the ultimate test. Commit/push to `pyret-lang#anchor` any
+changes you made to pyret-lang itself whilst debugging an
+assignment, make an empty commit and push to
+`code.pyret.org#horizon` and then browse to
+`pyret-horizon.herokuapp.com`.
+link:parley-create-assignment.adoc[] describes the process of
+setting up an assignment.
+
+NOTE: This doesn't seem to update. Basic things like `List`
+fail here that didn't with `localhost:3000`. Initially I thought
+the modules available to cpo were lagging behind what I pushed in
+pyret-lang, but it's more likely that the pushing of cpo itself
+isn't going through in its entirety.
+
+We may also experiment with using something like `essentials2021`
+rather than `cpo` as our catchall module.
+
+
+
+== Running the `fact` assignment
+
+This is a very simple assignment (not part of the Brown group).
+It does not use lists and doesn't require `include cpo`.
+
+While loading, there is this JS console warning (and this is common to all
+assignments) but it doesn't seem to affect correctness.
+
+image::images/fact-while-loading.png[]
+
+Updating responses provides the correct output:
+
+image::images/fact-results.png[]
+
+== Running the `docdiff` assignment -- misleading results
+
+The `docdiff` shows wheats failing (which they never should).
+
+image::images/docdiff-results.png[]
+
+This is not because of any erroring (ill-formed-ness) of the
+files themselves, but the checks fail when they shouldn't. It
+looks like tests like
+
+  overlap(cats, dogs) is%(within(0.000000000001)) 1/2
+
+are failing because the LHS is true rather than 1/2.
+
+image::images/docdiff-exception.png[]
+
+== Running the `sortacle` assignment -- misleading results
+
+`sortacle` shows wheats failing!
+
+image::images/sortacle-results.png[]
+
+Tests throwing exceptions when they shouldn't:
+
+image::images/sortacle-exception.png[]
+
+Other errors in the JS console:
+
+image::images/sortacle-uniq-key.png[]
+image::images/sortacle-map-dispatch.png[]
+
+== Errors while running the `filesystem` assignment
+
+The following errors show up on the JS console while running a
+best-effort modified `filesystem` assignment (i.e., correct all
+the include pathnames, and ensure `include cpo` is added when a
+file does anything beyond basics).
+
+While loading (i.e., before attempting "Update responses"), we
+get
+
+image::images/filesystem-while-loading.png[]
+
+(This above is not unique to `filesystem`. It happens before any
+engagement with the particular assignment in `projects/`. See
+above in notes for the `fact` assignment.)
+
+On "update responses", we get
+
+image::images/filesystem-stack-blow-1.png[]
+image::images/filesystem-stack-blow-2.png[]
+image::images/filesystem-stack-blow-3.png[]
+
+== Errors while running `updater`
+
+Same `Each child in a list should have unique "key" prop` error warning as for
+sortacle.
+
+Same `mapDispatchToProps() in
+Connect(FailureComponentUnconnected) must return a plain object.
+Instead received undefined.` diagnostic as for sortacle.
+
+Had to include `random` in `cpo.arr`.
+
+On 'update responses', error got:
+
+image::images/updater-error.png[]
+
+However, trying to include `run-task` in `cpo.arr` (as a provide
+from `G`) produces a compile error!
+
+image::images/updater-fail-compile.png[]
+
+== Erros while running `nile`
+
+The use of `_` creates error.
+
+////
 
 Three ways of debugging wheats/chaffs/tests.
 
@@ -121,90 +317,4 @@ Also, seems to be stressing any timeout limitations:
 
 AssertionError: execution completed in restore mode  (which is in
 generated file build/worker/main.js)
-
-== Running the `fact` assignment
-
-This is a very simple assignment (not part of the Brown group).
-It does not use lists and doesn't require `include cpo`.
-
-While loading, there is this JS console warning (and this is common to all
-assignments) but it doesn't seem to affect correctness.
-
-image::images/fact-while-loading.png[]
-
-Updating responses provides the correct output:
-
-image::images/fact-results.png[]
-
-== Running the `docdiff` assignment -- misleading results
-
-The `docdiff` shows wheats failing (which they never should).
-
-image::images/docdiff-results.png[]
-
-This is not because of any erroring (ill-formed-ness) of the
-files themselves, but the checks fail when they shouldn't. It
-looks like tests like
-
-  overlap(cats, dogs) is%(within(0.000000000001)) 1/2
-
-are failing because the LHS is true rather than 1/2.
-
-image::images/docdiff-exception.png[]
-
-== Running the `sortacle` assignment -- misleading results
-
-`sortacle` shows wheats failing!
-
-image::images/sortacle-results.png[]
-
-Tests throwing exceptions when they shouldn't:
-
-image::images/sortacle-exception.png[]
-
-Other errors in the JS console:
-
-image::images/sortacle-uniq-key.png[]
-image::images/sortacle-map-dispatch.png[]
-
-== Errors while running the `filesystem` assignment
-
-The following errors show up on the JS console while running a
-best-effort modified `filesystem` assignment (i.e., correct all
-the include pathnames, and ensure `include cpo` is added when a
-file does anything beyond basics).
-
-While loading (i.e., before attempting "Update responses"), we
-get
-
-image::images/filesystem-while-loading.png[]
-
-(This above is not unique to `filesystem`. It happens before any
-engagement with the particular assignment in `projects/`. See
-above in notes for the `fact` assignment.)
-
-On "update responses", we get
-
-image::images/filesystem-stack-blow-1.png[]
-image::images/filesystem-stack-blow-2.png[]
-image::images/filesystem-stack-blow-3.png[]
-
-== Errors while running `updater`
-
-Same `Each child in a list should have unique "key" prop` error warning as for
-sortacle.
-
-Same `mapDispatchToProps() in
-Connect(FailureComponentUnconnected) must return a plain object.
-Instead received undefined.` diagnostic as for sortacle.
-
-Had to include `random` in `cpo.arr`.
-
-On 'update responses', error got:
-
-image::images/updater-error.png[]
-
-However, trying to include `run-task` in `cpo.arr` (as a provide
-from `G`) produces a compile error!
-
-image::images/updater-fail-compile.png[]
+////

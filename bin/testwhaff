@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# last modified 2023-09-14
+
+f=$1
+g=${f%/*}/local-whaff.arr
+
+localize-whaff.rkt $f $g
+create-whaff.rkt $g
+pyret test-w.arr
+
+rm -f test-w.arr
+rm -f test-w.jarr
+rm -f $g 
