@@ -26,8 +26,7 @@ checking still fails sometimes with messages like "type
 constraint Boolean was incompatible with the type constaint
 Any".)
 
-
-== Quick local debugging 
+== Quick local debugging
 
 To make a preliminary check that a modified assignment has the
 right mods, you may use the command-line pyret offered by
@@ -62,7 +61,7 @@ browser console to do this cleanup.
 
 Then uploaded your (modified) assignments's `test.arr`, `wheats` and
 `chaffs` into the `projects` browswer folder. Ensure that any
-co-folder files loaded by `test.arr` are also uploaded.  
+co-folder files loaded by `test.arr` are also uploaded.
 
 TIP: This can be a tedious process, as every file has to be
 individually uploaded. After uploading to a browser folder, i.e.,
@@ -101,7 +100,6 @@ isn't going through in its entirety.
 We may also experiment with using something like `essentials2021`
 rather than `cpo` as our catchall module.
 
-
 == Running individual assignments
 
 === Running the `fact` assignment
@@ -109,14 +107,19 @@ rather than `cpo` as our catchall module.
 This is a very simple assignment (not part of the Brown group).
 It does not use lists and doesn't require `include cpo`.
 
-While loading, there is this JS console warning (and this is common to all
-assignments) but it doesn't seem to affect correctness.
+While loading, there is this JS console warning.
 
 image::images/fact-while-loading.png[]
+
+IMPORTANT: The above warning happens for all the assignments, and it doesn't
+seem to affect correctness.
 
 Updating responses provides the correct output:
 
 image::images/fact-results.png[]
+
+This simple assignment is the only unproblematic error (barring
+the probably benign warning above).
 
 === Running the `docdiff` assignment -- misleading results
 
@@ -197,6 +200,25 @@ The use of `_` creates error.
 
 image::images/nile-underscore.png[]
 
+=== Errors while running `contfracs`
+
+In the check block entitled "cf-pi-opt's first six terms have
+correct values if therea are at least six", the following type check error happends
+regardless of how I type the ``lam``'s paramters:
+
+image::images/contfracs-type-check-fail.png[]
+
+Commenting it out, the check block entitled "threshold-opt
+outputs the correct threshold for a given input Stream of
+coefficients from fraction-stream-opt" fails because of inability
+to deal with the `.value` field:
+
+image::images/contfracs-missing-value-field.png[]
+
+Commenting that out too, I get
+the following error in JS console:
+
+image::images/contfracs-assertion-error.png[]
 
 ////
 
