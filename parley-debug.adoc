@@ -72,10 +72,17 @@ root so subsequent uploads don't go to an unwanted folder.
 You may now click `Update responses` to run Examplar on the
 assignment.
 
-NOTE: I had to ensure that `cpo.arr` and `options.arr` `provide`
-`data *`. I was leery of making further module changes in
+[NOTE]
+--
+I had to ensure that `cpo.arr` and `options.arr` `provide`
+`data *`. `cpo.arr` also had to provide the function `random`
+from `N` (number). We need some way to have `cpo.arr` provide the
+module `arrays` without name clashes.
+
+I was leery of making further module changes in
 `pyret-lang#anchor` as this can create global -- and even
 lexical! -- name clashes if done indiscriminately.
+--
 
 CAUTION: Error messages are very bald. They just show the error
 templates without the instance or context. I.e., they show _what_
@@ -91,7 +98,7 @@ assignment, make an empty commit and push to
 link:parley-create-assignment.adoc[] describes the process of
 setting up an assignment.
 
-NOTE: This doesn't seem to update. Basic things like `List`
+NOTE: This doesn't seem to update properly. Basic things like `List`
 fail here that didn't with `localhost:3000`. Initially I thought
 the modules available to cpo were lagging behind what I pushed in
 pyret-lang, but it's more likely that the pushing of cpo itself
@@ -102,7 +109,12 @@ rather than `cpo` as our catchall module.
 
 == Running individual assignments
 
-=== Running the `fact` assignment
+The rest of this document gives the particular errors and
+warnings thrown up by each of ten translated assignments. Currently these
+are: fact, docdiff, sortacle, filesystem, updater, nile,
+contfracs, oracle, mst, joinlists.
+
+== Running the `fact` assignment
 
 This is a very simple assignment (not part of the Brown group).
 It does not use lists and doesn't require `include cpo`.
@@ -121,7 +133,7 @@ image::images/fact-results.png[]
 This simple assignment is the only unproblematic error (barring
 the probably benign warning above).
 
-=== Running the `docdiff` assignment -- misleading results
+== Running the `docdiff` assignment -- misleading results
 
 The `docdiff` shows wheats failing (which they never should).
 
@@ -137,7 +149,7 @@ are failing because the LHS is true rather than 1/2.
 
 image::images/docdiff-exception.png[]
 
-=== Running the `sortacle` assignment -- misleading results
+== Running the `sortacle` assignment -- misleading results
 
 `sortacle` shows wheats failing!
 
@@ -152,7 +164,7 @@ Other errors in the JS console:
 image::images/sortacle-uniq-key.png[]
 image::images/sortacle-map-dispatch.png[]
 
-=== Errors while running the `filesystem` assignment
+== Errors while running the `filesystem` assignment
 
 The following errors show up on the JS console while running a
 best-effort modified `filesystem` assignment (i.e., correct all
@@ -174,7 +186,7 @@ image::images/filesystem-stack-blow-1.png[]
 image::images/filesystem-stack-blow-2.png[]
 image::images/filesystem-stack-blow-3.png[]
 
-=== Errors while running `updater`
+== Errors while running `updater`
 
 Same `Each child in a list should have unique "key" prop` error warning as for
 sortacle.
@@ -194,13 +206,13 @@ from `G`) produces a compile error!
 
 image::images/updater-fail-compile.png[]
 
-=== Errors while running `nile`
+== Errors while running `nile`
 
 The use of `_` creates error.
 
 image::images/nile-underscore.png[]
 
-=== Errors while running `contfracs`
+== Errors while running `contfracs`
 
 In the check block entitled "cf-pi-opt's first six terms have
 correct values if therea are at least six", the following type check error happends
@@ -219,6 +231,40 @@ Commenting that out too, I get
 the following error in JS console:
 
 image::images/contfracs-assertion-error.png[]
+
+== Errors running the `oracle` assignment
+
+The `Array` type is used, but `cpo.arr` doesn't load arrays (only
+for anchor?). I tried updating `arrays.arr` to provide `data *`.
+Having `cpo.arr` provide the `module arrays` causes compile
+failure.
+
+Having oracle's `oracle-support.arr` explicitly include `arrays`
+causes shadowing errors:
+
+image::images/oracle-array-prob.png[]
+
+What's a correct way to have cpo.arr supply arrays without name
+clashes?
+
+== Errors while running `mst`
+
+The following is curious. The unbound procedures are derived from
+the datatype `Heap`, but both the datatype def and the procedure
+calls occur in the same file `mst-test-suite-support.arr`. (And
+the procedure calls occur after the datatype is defined.) This is
+not a case of a module not being provided or missing some
+provides in the module text. It's happening with a single file!
+
+image::images/mst-unbounds.png[]
+
+== Errors while running `joinlists`
+
+Despite commenting `import lists as L`, and replacing all `L.*`
+with `lists.*`, I get the following error: 
+
+image::images/joinlists-rest.png[]
+
 
 ////
 
