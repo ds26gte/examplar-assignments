@@ -221,6 +221,12 @@ image::images/filesystem-stack-blow-1.png[]
 image::images/filesystem-stack-blow-2.png[]
 image::images/filesystem-stack-blow-3.png[]
 
+=== No resolution
+
+Corrected loading of `lists`. But stack still blows:
+
+  RangeError: Maximum call stack size exceeded
+
 == Errors while running `updater`
 
 Same `Each child in a list should have unique "key" prop` error warning as for
