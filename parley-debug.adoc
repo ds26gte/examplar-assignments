@@ -135,6 +135,9 @@ the probably benign warning above).
 
 == Running the `docdiff` assignment -- misleading results
 
+Note, this problem has a resolution (see subsection below). However
+it shouldn't have arisen in the first place.
+
 The `docdiff` shows wheats failing (which they never should).
 
 image::images/docdiff-results.png[]
@@ -148,6 +151,20 @@ looks like tests like
 are failing because the LHS is true rather than 1/2.
 
 image::images/docdiff-exception.png[]
+
+=== Resolution!
+
+`include cpo` is apparently not enough to provide the module
+`lists`, despite what `cpo.arr` says. Therefore calls to things
+like `lists.distinct` fail. To remedy, explicitly do
+
+  import lists as lysts
+
+and replace all calls to `lists.funcname` with `lysts.funcname`.
+
+NB: we can't do `import lists as lists` and save us some edits
+because it still thinks `lists` is included somehow. This does
+not seem right, but at least we have a workaround.
 
 == Running the `sortacle` assignment -- misleading results
 
