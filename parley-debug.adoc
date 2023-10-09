@@ -168,6 +168,8 @@ not seem right, but at least we have a workaround.
 
 == Running the `sortacle` assignment -- misleading results
 
+There is a resolution a la docdiff above!
+
 `sortacle` shows wheats failing!
 
 image::images/sortacle-results.png[]
@@ -180,6 +182,22 @@ Other errors in the JS console:
 
 image::images/sortacle-uniq-key.png[]
 image::images/sortacle-map-dispatch.png[]
+
+=== Resolution
+
+First: import lists explicitly, as with docdiff.
+
+Second: sortacle uses lists.shuffle, which in pyret-anchor
+should but doesn't quite use random from the numbers module,
+preferring to raise an exception with a todo addressed to "alex".
+I added the requisite to lists.arr.
+
+Note that the use of an RNG seems to sometimes cause tests to
+fail, even in wheats. While debugging, I found both true != false
+type fails, as also one side creating an unexpected exception.
+But it also works quite well on other occasions.
+May be worthy of further investigation to see if randomness is
+misbehaving.
 
 == Errors while running the `filesystem` assignment
 
@@ -278,10 +296,9 @@ image::images/mst-unbounds.png[]
 == Errors while running `joinlists`
 
 Despite commenting `import lists as L`, and replacing all `L.*`
-with `lists.*`, I get the following error: 
+with `lists.*`, I get the following error:
 
 image::images/joinlists-rest.png[]
-
 
 ////
 
