@@ -1,6 +1,5 @@
 provide:
   *,
-  type *
 end
 
 fun fact-iter(n :: Number, acc :: Number):

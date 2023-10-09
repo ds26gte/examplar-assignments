@@ -1,5 +1,5 @@
 include cpo
-include file("wheats/docdiff-wheat-2.arr")
+include file("wheats/docdiff-wheat.arr")
 
 # Plan Outline:
 # Count instances of each unique word 
@@ -18,9 +18,7 @@ the = [list: "the"]
 the-2 = [list: "the", "the"]
 empty-5 = [list: "", "", "", "", ""]
 empty-2 = [list: "", ""]
-# one-way = overlap(test_doc1, test_doc2) # this causes error!
 
-# all check blocks fail, maybe tolerance not correct
 
 check "different:: Completely different documents":
   overlap(test_doc1, doc-different) is%(within(0.000000000001)) 0
@@ -41,7 +39,8 @@ end
 ### Below here are "normal cases" ###
 
 check "symmetry":
-  overlap(test_doc2, test_doc1) is%(within(0.000000000001)) overlap(test_doc1, test_doc2)
+  one-way = overlap(test_doc1, test_doc2)
+  overlap(test_doc2, test_doc1) is%(within(0.000000000001)) one-way
 end
 
 check "duplicates:: Deals with duplicates properly":
