@@ -1,5 +1,8 @@
 # CSCI0190 (Fall 2020)
 include cpo
+import lists as lysts
+
+
 
 provide {recommend: recommend, popular-pairs: popular-pairs} end
 
@@ -23,7 +26,7 @@ fun get-all-books(records :: List<File>) -> List<String> block:
   end
   
   # WHEAT DIFFERENCE: Raises an error if any contents lists contain duplicates.
-  when records.any({(f): f.content.length() <> lists.distinct(f.content).length()}):
+  when records.any({(f): f.content.length() <> lysts.distinct(f.content).length()}):
     raise("Contents contains duplicate.")
   end
   
@@ -34,13 +37,13 @@ fun get-all-books(records :: List<File>) -> List<String> block:
   
   records
     .map(_.content)
-    .foldl(lists.append, empty)
+    .foldl(lysts.append, empty)
 end
 
 fun gather-recos<A>(recos :: List<Recommendation<A>>) -> Recommendation<A>:
   doc: ```Takes a list of recommendation and combines the largest ones
        into a single recommendation.```
-  for lists.foldl(
+  for lysts.foldl(
       best-reco :: Recommendation<A> from recommendation(0, empty),
       book-reco :: Recommendation<A> from recos):
     ask:
@@ -51,7 +54,7 @@ fun gather-recos<A>(recos :: List<Recommendation<A>>) -> Recommendation<A>:
       | (book-reco.count == 0) and (best-reco.count == 0) then: best-reco
       | book-reco.count == best-reco.count then: 
         # Take the total-reco and add the contents of book-reco, except duplicates.
-        recommendation(best-reco.count, lists.distinct(best-reco.content + book-reco.content))
+        recommendation(best-reco.count, lysts.distinct(best-reco.content + book-reco.content))
     end
   end
   # WHEAT DIFFERENCE: Reverses the order of contents in the recommendation.

@@ -1,10 +1,11 @@
 #!/usr/bin/env racket
 
-; last modified 2023-09-13
+; last modified 2023-10-11
 
 #lang racket
 
 (define (localize-whaff-file ifile ofile)
+  ; (printf "localizing ~s to ~s\n" ifile ofile)
   (call-with-input-file ifile
     (lambda (i)
       (call-with-output-file ofile

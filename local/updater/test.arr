@@ -217,7 +217,7 @@ fun shuffle-helper(l :: List):
   cases(List) l:
     | empty => empty 
     | link(f,r) => 
-      if random(2) == 0:
+      if num-random(2) == 0:
         shuffle-helper(r + [list: f])
       else:
         [list: f] + shuffle-helper(r)

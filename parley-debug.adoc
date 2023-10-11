@@ -256,7 +256,7 @@ image::images/nile-underscore.png[]
 == Errors while running `contfracs`
 
 In the check block entitled "cf-pi-opt's first six terms have
-correct values if therea are at least six", the following type check error happends
+correct values if therea are at least six", the following type check error happens
 regardless of how I type the ``lam``'s paramters:
 
 image::images/contfracs-type-check-fail.png[]
