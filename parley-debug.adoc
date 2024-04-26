@@ -44,7 +44,7 @@ Then call `pyret` on the modified `test.arr`.
 
 I have a shell script file called `testwhaff` whose
 argument is the (unmodified) wheat/chaff file. (This is in `bin/`
-folder along with its helper Racket files. Copy them all to your
+folder along with its helper Lua files. Copy them all to your
 `PATH` if you want to use them.)
 
 == Testing using `localhost:3000`

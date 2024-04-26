@@ -1,14 +1,14 @@
 #!/bin/bash
 
-# last modified 2023-09-14
+# last modified 2024-04-26
 
 f=$1
 g=${f%/*}/local-whaff.arr
 
-localize-whaff.rkt $f $g
-create-whaff.rkt $g
+localize-whaff.lua $f $g
+create-whaff.lua $g
 pyret test-w.arr
 
-rm -f test-w.arr
+# rm -f test-w.arr
 rm -f test-w.jarr
-rm -f $g 
+# rm -f $g

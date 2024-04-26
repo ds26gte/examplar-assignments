@@ -1,6 +1,6 @@
 provide { generate-input: generate-input, is-valid: is-valid, oracle: oracle } end
 
-include my-gdrive("sortacle-common.arr")
+include file("sortacle-common.arr")
 
 # DO NOT CHANGE ANYTHING ABOVE THIS LINE
 #
