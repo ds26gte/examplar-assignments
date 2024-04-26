@@ -154,17 +154,19 @@ image::images/docdiff-exception.png[]
 
 === Resolution!
 
-`include cpo` is apparently not enough to provide the module
-`lists`, despite what `cpo.arr` says. Therefore calls to things
-like `lists.distinct` fail. To remedy, explicitly do
+`include cpo` is not enough to provide the module `lists`, even
+though the original `cpo.arr` says it will. Since the `provide
+module` statements are failing, I removed them from `cpo.arr`.
 
-  import lists as lysts
+Now I can do `import lists as lists` in addition to `include
+cpo`.
 
-and replace all calls to `lists.funcname` with `lysts.funcname`.
+This allows refs like `lists.distinct` to work.
 
-NB: we can't do `import lists as lists` and save us some edits
-because it still thinks `lists` is included somehow. This does
-not seem right, but at least we have a workaround.
+NOTE: We could also replace `lists.distinct` with just `distinct`,
+if it is provided `cpo.arr` from its own importation of `lists`.
+However, doing an explicit `import lists as lists` avoids having
+to muck with refs already present.
 
 == Running the `sortacle` assignment -- misleading results
 

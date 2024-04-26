@@ -1,3 +1,5 @@
+include file("../fact-qtm.arr")
+
 provide:
   *,
 end

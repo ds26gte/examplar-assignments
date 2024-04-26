@@ -1,12 +1,9 @@
 # CSCI0190 (Fall 2020)
 
 include cpo
+import lists as lists
 
-import lists as lysts
-
-provide:
-  overlap
-end
+provide {overlap: overlap} end
 
 #| chaff (tdelvecc, Aug 26, 2020): 
     Raises an error when either doc has duplicate elements.
@@ -17,14 +14,14 @@ fun overlap(doc1 :: List<String>%(is-link), doc2 :: List<String>%(is-link)) -> N
   doc: "Finds the overlap value of two documents."
   
   # CHAFF DIFFERENCE
-  when (doc1 <> lysts.distinct(doc1)) or (doc2 <> lysts.distinct(doc2)):
+  when (doc1 <> lists.distinct(doc1)) or (doc2 <> lists.distinct(doc2)):
     raise("Found duplicates in one of documents.")
   end
   
   doc1-lower :: List<String> = doc1.map(string-to-lower)
   doc2-lower :: List<String> = doc2.map(string-to-lower)
   
-  unique-words :: List<String> = lysts.distinct(doc1-lower + doc2-lower)
+  unique-words :: List<String> = lists.distinct(doc1-lower + doc2-lower)
   
   fun make-vector(doc :: List<String>) -> List<Number>:
     doc: "Makes a vector of word frequencies for a given doc."

@@ -1,5 +1,10 @@
 include cpo
-include file("wheats/docdiff-wheat.arr")
+provide *
+
+# DO NOT CHANGE ANYTHING ABOVE THIS LINE
+import file("docdiff-code.arr") as solution
+overlap = solution.overlap
+
 
 # Plan Outline:
 # Count instances of each unique word 

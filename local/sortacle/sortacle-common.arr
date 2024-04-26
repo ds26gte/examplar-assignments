@@ -1,8 +1,5 @@
-provide:
-  *,
-  type *,
-  data *
-end
+provide *
+provide-types *
 
 data Person:
   | person(name :: String, age :: Number)

@@ -1,16 +1,11 @@
 # CSCI0190 (Fall 2020)
 
 include cpo
+import lists as lists
 
-import lists as lysts
+provide {is-valid: is-valid, generate-input: generate-input, oracle: oracle} end
 
-provide: 
-  is-valid,
-  generate-input,
-  oracle
-end
-
-import file("../sortacle-common.arr") as common
+import my-gdrive("sortacle-common.arr") as common
 
 type Person = common.Person
 person = common.person
@@ -31,14 +26,14 @@ fun generate-input(n :: Number) -> List<Person> block:
   
   fun generate-name(length :: Number) -> String:
     doc: "Generates a random name of given length."
-    for lysts.map(_ from range(0, length)):
+    for lists.map(_ from range(0, length)):
       num-random(65535)
     end
       ^ string-from-code-points
   end
   
   # CHAFF DIFFERENCE: Produces an extra person.
-  for lysts.map(_ from range(0, n + 1)):
+  for lists.map(_ from range(0, n + 1)):
     person(
       generate-name(num-random(100)), 
       num-random(1e6) + 1e6)
@@ -61,7 +56,7 @@ fun is-valid(input :: List<Person>, output :: List<Person>) -> Boolean:
   cases (List<Person>) output:
     | empty => true
     | link(_, r) =>
-      for lysts.all2(left :: Person from output, right from r):
+      for lists.all2(left :: Person from output, right from r):
         left.age <= right.age
       end
   end
@@ -78,7 +73,7 @@ fun oracle(sorter :: (List<Person> -> List<Person>)) -> Boolean:
     [list: person("A Person", 20), person("B Person", 10)], # two person 3
 
     # repeated person
-    lysts.repeat(20, person("A Person", 5)),
+    lists.repeat(20, person("A Person", 5)),
     
     # same name, diff age
     range(0, 10).map(person("A Person", _)), 
@@ -99,17 +94,17 @@ fun oracle(sorter :: (List<Person> -> List<Person>)) -> Boolean:
     [list: person("a", 20), person("b", 10), person("a", 20)],
     
     # long and reverse sorted
-    lysts.map2({(p, age): person(p.name, age)}, generate-input(150), range(0, 150))
+    lists.map2({(p, age): person(p.name, age)}, generate-input(150), range(0, 150))
       .reverse()
   ]
   
   # Manual inputs
-  for lysts.all(input from interesting-inputs):
+  for lists.all(input from interesting-inputs):
     is-valid(input, sorter(input))
   end
   and 
   # Automated inputs
-  for lysts.all(n from range(3, 30)):
+  for lists.all(n from range(3, 30)):
     input = generate-input(n)
     is-valid(input, sorter(input))
   end
