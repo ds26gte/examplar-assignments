@@ -1,6 +1,7 @@
 include cpo
 
 include file("fact-code.arr")
+include file("fact-qtm.arr")
 
 check:
   fact(1) is 1

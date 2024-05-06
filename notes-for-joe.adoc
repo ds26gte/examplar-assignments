@@ -14,5 +14,29 @@ test.arr, modified all the gdrive pathnames to relative pathnames
 (since the requested files are all here), and made sure that the
 *.arr files all have `include cpo` if needed.
 
-I've put the `filesystem` assignment there for now. Will add the
-others after I re-run them.
+== cpo.arr woes
+
+Locally running Examplar/Anchor requires `include cpo` and
+possibly `import lists as lists` if using `lists.xyz`.
+
+Cannot use `lists.xyz` if only `include cpo` done.
+
+If cpo provides a lists.xyz explicitly, can use `xyz` (without
+module prefix).
+
+Convenience i: avoiding having to explicitly `import lists as
+lists` in order to use the `lists.` module prefix.
+
+Convenience ii: avoiding having to load `cpo` at all. Running the
+examplar examples using the npm-supplied command-line `pyret`
+doesn't require `cpo`, indeed `include cpo` says `cpo not found`.
+However all of the cpo stuff is available, including the
+`lists.xyz`.
+
+Convenience iii: Uploading to the browser `projects/` directory with
+an assignment requires explicit traversal of pathname of file
+from Home via the file-finding GUI for every file! There doesn't
+seem to be group-upload possible. Successive attempts at upload
+don't remember the previous upload path at all, so I have to
+start from Home every single time. Is there a quick way to do
+this? Is this OS- or browser-dependent?

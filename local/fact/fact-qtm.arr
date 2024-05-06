@@ -1,4 +1,4 @@
-include cpo
+# include cpo
 
 provide:
   fact-in-ok
