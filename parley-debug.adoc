@@ -168,6 +168,8 @@ if it is provided `cpo.arr` from its own importation of `lists`.
 However, doing an explicit `import lists as lists` avoids having
 to muck with refs already present.
 
+This was fixed by https://github.com/brownplt/pyret-lang/commit/c8a1f5ec58ef482f3c71a7ec147ec363ee070488
+
 == Running the `sortacle` assignment -- misleading results
 
 There is a resolution a la docdiff above!
