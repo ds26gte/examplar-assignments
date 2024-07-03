@@ -339,12 +339,16 @@ check ```threshold-opt outputs the correct threshold for a given input Stream of
   approximation-b = lz-first(lz-rest(lz-rest(lz-rest(sample-approximations))))
 
   # Sanity check:
-  approximation-a.value is-roughly ~1.428571
-  approximation-b.value is-roughly ~1.444444
-  num-abs(approximation-a.value - approximation-b.value) < 0.03 is true
+  approximation-a is-roughly some(~1.428571)
+  approximation-b is-roughly some(~1.444444)
+  n1 = approximation-a.or-else(-1000)
+  n2 = approximation-b.or-else(-2000)
+  num-abs(n1 - n2) < 0.03 is true
+
+  # num-abs(approximation-a.value - approximation-b.value) < 0.03 is true
 
   # Actual test:
-  threshold-opt(sample-approximations, 0.03) is approximation-a.value
+  threshold-opt(sample-approximations, 0.03) is n1
 end
 
 check ```threshold-opt outputs the correct threshold for a given input Stream of
