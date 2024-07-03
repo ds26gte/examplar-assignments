@@ -154,6 +154,10 @@ image::images/docdiff-exception.png[]
 
 === Resolution!
 
+[IMPORTANT]
+Joe fixed it so cpo's importatation of modules (e.g., lists) now
+works.
+
 `include cpo` is not enough to provide the module `lists`, even
 though the original `cpo.arr` says it will. Since the `provide
 module` statements are failing, I removed them from `cpo.arr`.

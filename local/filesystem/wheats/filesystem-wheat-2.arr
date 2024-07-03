@@ -1,7 +1,7 @@
 # CSCI0190 (Fall 2020)
 
 include cpo
-import lists as lists
+import lists as lysts
 
 provide {how-many: how-many, du-dir: du-dir, can-find: can-find, fynd: fynd} end
 
@@ -40,8 +40,8 @@ fun can-find(directory :: Dir, name :: String) -> Boolean block:
   # WHEAT DIFFERENCE: errors when two files have same name
   unique-file-name-count = directory.fs
     ^ map({(x :: File): x.name}, _)
-    ^ lists.distinct
-    ^ lists.length
+    ^ lysts.distinct
+    ^ lysts.length
   when (unique-file-name-count <> directory.fs.length()):
     raise("Two files with same name in one directory")
   end
@@ -63,8 +63,8 @@ fun fynd(directory :: Dir, name :: String) -> List<Path> block:
     # WHEAT DIFFERENCE: errors when two files have same name
     unique-file-name-count = directory.fs
       ^ map({(x :: File): x.name}, _)
-      ^ lists.distinct
-      ^ lists.length
+      ^ lysts.distinct
+      ^ lysts.length
     when (unique-file-name-count <> directory.fs.length()):
       raise("Two files with same name in one directory")
     end
@@ -72,7 +72,7 @@ fun fynd(directory :: Dir, name :: String) -> List<Path> block:
     sub-dir-paths :: List<Path> =
       directory.ds
       ^ map(fynd(_, name), _) # Recur on sub-dirs
-      ^ lists.foldl(lists.append, empty, _) # Combine results into one list
+      ^ lysts.foldl(lysts.append, empty, _) # Combine results into one list
       ^ map(link(directory.name, _), _) # Add current directory to paths
 
     # If file is in current directory, add new path

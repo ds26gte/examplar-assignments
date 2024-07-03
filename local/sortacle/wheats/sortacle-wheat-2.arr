@@ -1,7 +1,6 @@
 # CSCI0190 (Fall 2020)
 
 include cpo
-import lists as lists
 
 provide {is-valid: is-valid, generate-input: generate-input, oracle: oracle} end
 

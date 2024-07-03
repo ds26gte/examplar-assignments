@@ -1,7 +1,7 @@
 # CSCI0190 (Fall 2020)
 
 include cpo
-import lists as lists
+import lists and lysts
 
 provide {how-many: how-many, du-dir: du-dir, can-find: can-find, fynd: fynd} end
 
@@ -58,7 +58,7 @@ fun fynd(directory :: Dir, name :: String) -> List<Path>:
   sub-dir-paths :: List<Path> =
     directory.ds
     ^ map(fynd(_, name), _) # Recur on sub-dirs
-    ^ fold(lists.append, empty, _) # Combine results into one list
+    ^ fold(lysts.append, empty, _) # Combine results into one list
     ^ map(link(directory.name, _), _) # Add current directory to paths
   
   # If file is in current directory, add new path

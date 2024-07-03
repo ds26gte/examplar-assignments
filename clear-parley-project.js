@@ -1,4 +1,4 @@
-// last modified 2024-05-25
+// last modified 2024-07-03
 
 // paste the following in the JS console to clear out the existing assignment in projects/
 
@@ -11,21 +11,21 @@ function isDirectory(d) {
     return false;
   }
 }
-function rmDirectory(d, deldir) {
+function rmDirectory(d) {
   let ff = fs.readdirSync(d);
   ff.forEach(function (f) {
     let df = d + '/' + f;
     if (isDirectory(df)) {
-      rmDirectory(df, deldir);
+      rmDirectory(df);
     } else {
       fs.unlinkSync(df);
     }
   });
-  if (deldir) { fs.rmdirSync(d); }
+  fs.rmdirSync(d); 
 }
-function rmPath(p, deldir) {
+function rmPath(p) {
   if (isDirectory(p)) {
-    rmDirectory(p, deldir);
+    rmDirectory(p);
   } else {
     fs.unlinkSync(p);
   }
