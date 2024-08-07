@@ -1,5 +1,4 @@
 include cpo
-include file("../fact-qtm.arr")
 
 provide: * end
 
